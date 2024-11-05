@@ -6,7 +6,13 @@ sources:
     tables:
       - name: sales
         identifier: gz_raw_sales
+        description: Sales of Greenweez / one row per product_id in each order_id
+        columns:
+          - name: date_date
+            description: date purchase was made
       - name: product
         identifier: gz_raw_product
+        description: identifies products
       - name: ship
         identifier: gz_raw_ship
+        description: identifies shipping time
