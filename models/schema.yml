@@ -13,6 +13,19 @@ sources:
       - name: product
         identifier: gz_raw_product
         description: identifies products
+        columns:
+          - name: products_id
+            description: unique key for PRODUCT
+            tests:
+            - not_null
+            - unique
       - name: ship
         identifier: gz_raw_ship
         description: identifies shipping time
+        columns:
+          - name: orders_id
+        tests:
+        -  not_null
+        - unique
+        
+        
