@@ -1,31 +1,59 @@
-version : 2
-
+version: 2
 sources:
-  - name: RAW
-    schema: gz_rwa_data
-    tables:
-      - name: sales
-        identifier: gz_raw_sales
-        description: Sales of Greenweez / one row per product_id in each order_id
-        columns:
-          - name: date_date
-            description: date purchase was made
-      - name: product
-        identifier: gz_raw_product
-        description: identifies products
-        columns:
-          - name: products_id
-            description: unique key for PRODUCT
-            tests:
-            - not_null
+- name: RAW
+  schema: gz_rwa_data
+  tables:
+    - name: sales
+      identifier: gz_raw_sales
+      description: revenue per order
+      freshness:
+       warn_after:
+          count: 90
+          period: day
+      loaded_at_field: "CAST(date_date AS TIMESTAMP)"
+      columns:
+        - name: date_date
+        - name: revenue
+        - name: quantity
+        - name: primary_key
+    - name: product
+      identifier: gz_raw_product
+      description: purchase price per product id
+      columns:
+        - name: products_id
+          description: primary key
+          tests:
+           - unique
+           - not_null
+        - name: purchase_price
+    - name: ship
+      identifier: gz_raw_ship
+      description: shipping details per order
+      columns:
+        - name: orders_id
+          description: primary key
+          tests:
             - unique
-      - name: ship
-        identifier: gz_raw_ship
-        description: identifies shipping time
-        columns:
-          - name: orders_id
-        tests:
-        -  not_null
-        - unique
-        
-        
+            - not_null
+        - name: ship_cost
+        - name: shipping_fee
+        - name: logcost
+models:
+ - name: stg_raw__sales
+   columns:
+    - name: primary_key
+      tests:
+      - unique
+      - not_null
+models:
+  my_new_project:
+    mart:
+      +materialized: table
+
+
+
+
+
+
+
+
