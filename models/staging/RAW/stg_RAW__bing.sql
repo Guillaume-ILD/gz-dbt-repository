@@ -2,7 +2,7 @@ with
 
 source as (
 
-    select * from {{ source('RAW', 'bing') }}
+    select * from {{ source('raw', 'bing') }}
 
 ),
 
