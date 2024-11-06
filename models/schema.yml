@@ -41,14 +41,38 @@ sources:
     - name : adwords
       identifier: raw_gz_adwords
       description : data for adwords
+      columns:
+        - name: campaign_key
+          description: primary key
+          tests:
+            - unique
+            - not null
     - name: bing
       identifier: raw_gz_bing
       description: data from bing
+      columns:
+        - name: campaign_key
+          description: primary key
+          tests:
+            - unique
+            - not null
     - name: criteo
       identifier: raw_gz_criteo
       description: data from criteo
+      columns:
+        - name: campaign_key
+          description: primary key
+          tests:
+            - unique
+            - not null
     - name: facebook
       identifier: raw_gz_facebook
+      columns:
+        - name: campaign_key
+          description: primary key
+          tests:
+            - unique
+            - not null
 
 models:
  - name: stg_raw__sales
@@ -57,11 +81,3 @@ models:
       tests:
       - unique
       - not_null
-
-
-
-
-
-
-
-
