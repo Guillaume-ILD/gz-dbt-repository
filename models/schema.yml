@@ -38,6 +38,18 @@ sources:
         - name: ship_cost
         - name: shipping_fee
         - name: logcost
+    - name : adwords
+      identifier: raw_gz_adwords
+      description : data for adwords
+    - name: bing
+      identifier: raw_gz_bing
+      description: data from bing
+    - name: criteo
+      identifier: raw_gz_criteo
+      description: data from criteo
+    - name: facebook
+      identifier: raw_gz_facebook
+
 models:
  - name: stg_raw__sales
    columns:
